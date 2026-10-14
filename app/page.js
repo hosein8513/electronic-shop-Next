@@ -1,69 +1,131 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import ProductCard from "@/components/Productcard";
+import Sidebar from "@/components/SideBar";
+import { useState } from "react";
+
+
+const products = [
+  {
+    id: 1,
+    title: "گوشی سامسونگ Galaxy S24 Ultra",
+    category: "موبایل",
+    description:
+      "پرچمدار سامسونگ با نمایشگر ۶.۸ اینچی، دوربین ۲۰۰ مگاپیکسلی و تراشه اسنپدراگون ۸ نسل ۳؛ انتخابی فوق‌العاده برای عکاسی حرفه‌ای.",
+    price: 89500000,
+    image: "/images/s24.jpg",
+    rating: 4.8,
+  },
+  {
+    id: 2,
+    title: "لپ‌تاپ اپل MacBook Air M3",
+    category: "لپ‌تاپ",
+    description:
+      "سبک، بی‌صدا و قدرتمند با تراشه M3 اپل و ۱۸ ساعت عمر باتری؛ همراه ایده‌آل برای کار و طراحی.",
+    price: 78000000,
+    image: "/images/macbook air m3.jpg",
+    rating: 4.9,
+  },
+  {
+    id: 3,
+    title: "هدفون بی‌سیم Sony WH-1000XM5",
+    category: "لوازم جانبی",
+    description:
+      "بهترین نویزکنسلینگ بازار با کیفیت صدای خیره‌کننده و ۳۰ ساعت پخش موسیقی؛ برای تمرکز بیشتر و لذت شنیداری عمیق‌تر.",
+    price: 19500000,
+    image: "/images/Sony WH-1000XM5.jpg",
+    rating: 4.7,
+  },
+  {
+    id: 4,
+    title: "گوشی شیائومی Redmi Note 13 Pro",
+    category: "موبایل",
+    description:
+      "ارزش خرید بی‌نظیر با دوربین ۲۰۰ مگاپیکسلی، نمایشگر AMOLED ۱۲۰ هرتز و شارژ سریع ۶۷ وات.",
+    price: 16800000,
+    image: "/images/Redmi Note 13 Pro.jpg",
+    rating: 4.5,
+  },
+  {
+    id: 5,
+    title: "لپ‌تاپ گیمینگ ASUS ROG Strix G16",
+    category: "لپ‌تاپ",
+    description:
+      "غول گیمینگ با گرافیک RTX 4070 و نمایشگر ۱۶۵ هرتز؛ تجربه‌ای روان از بازی‌های نسل جدید.",
+    price: 112000000,
+    image: "/images/ASUS ROG Strix G16.jpg",
+    rating: 4.6,
+  },
+  {
+    id: 6,
+    title: "ساعت هوشمند اپل Watch Series 9",
+    category: "لوازم جانبی",
+    description:
+      "ردیابی سلامت پیشرفته، نمایشگر همیشه روشن و اتصال سریع‌تر؛ دستیار هوشمند مچ دست شما.",
+    price: 32000000,
+    image: "/images/Watch Series 9.jpg",
+    rating: 4.8,
+  },
+];
+
+const heroCategories = ["موبایل", "لپ‌تاپ", "لوازم جانبی"];
+
+export default function HomePage() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.js
-            </code>{" "}
-            file.
+    <div className="min-h-screen flex flex-col">
+      <Header onMenuClick={() => setMenuOpen(true)} />
+
+      {/* بنر هیرو */}
+      <section className="bg-gradient-to-l from-blue-700 via-blue-600 to-cyan-500 text-white">
+        <div className="max-w-7xl mx-auto px-6 py-14 text-center">
+          <h1 className="text-3xl sm:text-5xl font-black mb-4 leading-tight">
+            دنیای تکنولوژی، یک قدم با شما
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-blue-100 max-w-2xl mx-auto mb-7 leading-7">
+            جدیدترین موبایل‌ها، لپ‌تاپ‌ها و لوازم جانبی با ضمانت اصالت،
+            قیمت رقابتی و ارسال سریع
           </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {heroCategories.map((cat) => (
+              <a
+                key={cat}
+                href="#products"
+                className="bg-white/15 hover:bg-white/25 backdrop-blur px-6 py-2.5 rounded-full text-sm font-semibold border border-white/20 transition"
+              >
+                {cat}
+              </a>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
+
+      {/* بدنه اصلی: سایدبار + کانتنت */}
+      <div className="flex-1 flex max-w-7xl mx-auto w-full">
+        <Sidebar open={menuOpen} onClose={() => setMenuOpen(false)} />
+
+        <main id="products" className="flex-1 px-4 sm:px-6 py-8">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-gray-800">
+              محصولات منتخب
+            </h2>
+            <a href="#" className="text-sm text-blue-600 hover:text-blue-800 font-medium">
+              مشاهده همه ←
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </main>
+      </div>
+
+      <Footer />
     </div>
   );
 }
