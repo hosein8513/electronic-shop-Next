@@ -46,7 +46,7 @@ export default async function ProductPage({ params }) {
         <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
           <Link href="/" className="hover:text-blue-600 transition">صفحه اصلی</Link>
           <span>/</span>
-          <Link href={`/?category=${product.category}`} className="hover:text-blue-600 transition">
+          <Link href={`/category/${product.category}`} className="hover:text-blue-600 transition">
             {product.category}
           </Link>
           <span>/</span>

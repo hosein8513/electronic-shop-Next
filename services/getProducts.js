@@ -26,3 +26,27 @@ export const getCategories = async () => {
   const data = await res.json();
   return data;
 };
+
+// export const searchProducts = async (query) => {
+//   const res = await fetch(
+//     `http://localhost:3000/products?q=${encodeURIComponent(query)}`,
+//     { cache: "no-store" }
+//   );
+//   if (!res.ok) return [];
+//   const data = await res.json();
+//   return data;
+// };
+
+export const searchProducts = async (query) => {
+  const all = await getProducts();
+  const q = query.trim().toLowerCase();
+
+  if (!q) return [];
+
+  return all.filter(
+    (p) =>
+      p.title?.toLowerCase().includes(q) ||
+      p.category?.toLowerCase().includes(q) 
+      // p.description?.toLowerCase().includes(q)
+  );
+};
