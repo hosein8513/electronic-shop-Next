@@ -1,18 +1,33 @@
 "use client";
 
+import { useState } from "react";
+
 const categories = [
   { name: "موبایل", icon: "📱", count: 128 },
   { name: "لپ‌تاپ", icon: "💻", count: 76 },
   { name: "لوازم جانبی", icon: "🎧", count: 234 },
 ];
 
-export default function Sidebar({ open, onClose }) {
+export default function Sidebar() {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
+      {/* دکمه همبرگر - فقط موبایل */}
+      <button
+        onClick={() => setOpen(true)}
+        aria-label="باز کردن منو"
+        className="lg:hidden fixed bottom-5 right-5 z-30 p-3 rounded-full bg-blue-600 text-white shadow-lg shadow-blue-300 hover:bg-blue-700 transition"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+          <path strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
       {/* اورلی موبایل */}
       {open && (
         <div
-          onClick={onClose}
+          onClick={() => setOpen(false)}
           className="fixed inset-0 z-40 bg-black/40 lg:hidden transition-opacity"
         />
       )}
@@ -26,7 +41,7 @@ export default function Sidebar({ open, onClose }) {
         <div className="flex items-center justify-between mb-5">
           <h2 className="font-bold text-gray-800">دسته‌بندی‌ها</h2>
           <button
-            onClick={onClose}
+            onClick={() => setOpen(false)}
             className="lg:hidden p-1 rounded-md hover:bg-gray-100"
             aria-label="بستن منو"
           >
@@ -39,7 +54,7 @@ export default function Sidebar({ open, onClose }) {
             <a
               key={cat.name}
               href={`#category-${cat.name}`}
-              onClick={onClose}
+              onClick={() => setOpen(false)}
               className="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-gray-700
                 hover:bg-gradient-to-l hover:from-blue-50 hover:to-cyan-50 hover:text-blue-700
                 border border-transparent hover:border-blue-100 transition group"

@@ -1,83 +1,17 @@
-"use client";
-
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ProductCard from "@/components/Productcard";
 import Sidebar from "@/components/SideBar";
-import { useState } from "react";
-
-
-const products = [
-  {
-    id: 1,
-    title: "گوشی سامسونگ Galaxy S24 Ultra",
-    category: "موبایل",
-    description:
-      "پرچمدار سامسونگ با نمایشگر ۶.۸ اینچی، دوربین ۲۰۰ مگاپیکسلی و تراشه اسنپدراگون ۸ نسل ۳؛ انتخابی فوق‌العاده برای عکاسی حرفه‌ای.",
-    price: 89500000,
-    image: "/images/s24.jpg",
-    rating: 4.8,
-  },
-  {
-    id: 2,
-    title: "لپ‌تاپ اپل MacBook Air M3",
-    category: "لپ‌تاپ",
-    description:
-      "سبک، بی‌صدا و قدرتمند با تراشه M3 اپل و ۱۸ ساعت عمر باتری؛ همراه ایده‌آل برای کار و طراحی.",
-    price: 78000000,
-    image: "/images/macbook air m3.jpg",
-    rating: 4.9,
-  },
-  {
-    id: 3,
-    title: "هدفون بی‌سیم Sony WH-1000XM5",
-    category: "لوازم جانبی",
-    description:
-      "بهترین نویزکنسلینگ بازار با کیفیت صدای خیره‌کننده و ۳۰ ساعت پخش موسیقی؛ برای تمرکز بیشتر و لذت شنیداری عمیق‌تر.",
-    price: 19500000,
-    image: "/images/Sony WH-1000XM5.jpg",
-    rating: 4.7,
-  },
-  {
-    id: 4,
-    title: "گوشی شیائومی Redmi Note 13 Pro",
-    category: "موبایل",
-    description:
-      "ارزش خرید بی‌نظیر با دوربین ۲۰۰ مگاپیکسلی، نمایشگر AMOLED ۱۲۰ هرتز و شارژ سریع ۶۷ وات.",
-    price: 16800000,
-    image: "/images/Redmi Note 13 Pro.jpg",
-    rating: 4.5,
-  },
-  {
-    id: 5,
-    title: "لپ‌تاپ گیمینگ ASUS ROG Strix G16",
-    category: "لپ‌تاپ",
-    description:
-      "غول گیمینگ با گرافیک RTX 4070 و نمایشگر ۱۶۵ هرتز؛ تجربه‌ای روان از بازی‌های نسل جدید.",
-    price: 112000000,
-    image: "/images/ASUS ROG Strix G16.jpg",
-    rating: 4.6,
-  },
-  {
-    id: 6,
-    title: "ساعت هوشمند اپل Watch Series 9",
-    category: "لوازم جانبی",
-    description:
-      "ردیابی سلامت پیشرفته، نمایشگر همیشه روشن و اتصال سریع‌تر؛ دستیار هوشمند مچ دست شما.",
-    price: 32000000,
-    image: "/images/Watch Series 9.jpg",
-    rating: 4.8,
-  },
-];
+import { getProducts } from "@/services/getProducts";
 
 const heroCategories = ["موبایل", "لپ‌تاپ", "لوازم جانبی"];
 
-export default function HomePage() {
-  const [menuOpen, setMenuOpen] = useState(false);
+export default async function HomePage() {
+  const products = await getProducts();
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header onMenuClick={() => setMenuOpen(true)} />
+      <Header />
 
       {/* بنر هیرو */}
       <section className="bg-gradient-to-l from-blue-700 via-blue-600 to-cyan-500 text-white">
@@ -105,7 +39,7 @@ export default function HomePage() {
 
       {/* بدنه اصلی: سایدبار + کانتنت */}
       <div className="flex-1 flex max-w-7xl mx-auto w-full">
-        <Sidebar open={menuOpen} onClose={() => setMenuOpen(false)} />
+        <Sidebar />
 
         <main id="products" className="flex-1 px-4 sm:px-6 py-8">
           <div className="flex items-center justify-between mb-6">

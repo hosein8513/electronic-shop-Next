@@ -1,8 +1,10 @@
+import Link from "next/link";
+
 export default function ProductCard({ product }) {
   return (
     <article className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col">
       {/* تصویر */}
-      <div className="relative aspect-[4/3] bg-gray-100 overflow-hidden">
+      <Link href={`/products/${product.id}`} className="relative aspect-[4/3] bg-gray-100 overflow-hidden block">
         <img
           src={product.image}
           alt={product.title}
@@ -11,7 +13,7 @@ export default function ProductCard({ product }) {
         <span className="absolute top-3 right-3 bg-blue-600/90 backdrop-blur text-white text-xs font-medium px-3 py-1 rounded-full">
           {product.category}
         </span>
-      </div>
+      </Link>
 
       {/* محتوا */}
       <div className="p-5 flex flex-col flex-1">
@@ -34,9 +36,12 @@ export default function ProductCard({ product }) {
           <span className="font-extrabold text-blue-700 text-sm whitespace-nowrap">
             {product.price.toLocaleString("fa-IR")} تومان
           </span>
-          <button className="text-xs font-semibold text-blue-600 border border-blue-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 px-4 py-2 rounded-full transition active:scale-95">
+          <Link
+            href={`/products/${product.id}`}
+            className="text-xs font-semibold text-blue-600 border border-blue-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 px-4 py-2 rounded-full transition active:scale-95"
+          >
             ادامه مطلب ←
-          </button>
+          </Link>
         </div>
       </div>
     </article>
