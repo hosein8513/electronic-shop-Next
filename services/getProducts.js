@@ -10,3 +10,19 @@ export const getProductById = async (id) => {
   const data = await res.json();
   return data;
 };
+
+export const getCategoryProducts = async (category) => {
+  const res = await fetch(
+    `http://localhost:3000/products?category=${encodeURIComponent(category)}`,
+    { cache: "no-store" }
+  );
+  const data = await res.json();
+  return data;
+};
+
+export const getCategories = async () => {
+  const res = await fetch("http://localhost:3000/categories", { cache: "no-store" });
+  if (!res.ok) return [];
+  const data = await res.json();
+  return data;
+};

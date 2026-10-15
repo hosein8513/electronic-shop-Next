@@ -1,14 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-
-const categories = [
-  { name: "موبایل", icon: "📱", count: 128 },
-  { name: "لپ‌تاپ", icon: "💻", count: 76 },
-  { name: "لوازم جانبی", icon: "🎧", count: 234 },
-];
+import { useCategories } from "@/context/CategoriesContext";
 
 export default function Sidebar() {
+  const categories = useCategories();
   const [open, setOpen] = useState(false);
 
   return (
@@ -51,9 +48,9 @@ export default function Sidebar() {
 
         <nav className="space-y-1.5">
           {categories.map((cat) => (
-            <a
-              key={cat.name}
-              href={`#category-${cat.name}`}
+            <Link
+              key={cat.id}
+              href={cat.path}
               onClick={() => setOpen(false)}
               className="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-gray-700
                 hover:bg-gradient-to-l hover:from-blue-50 hover:to-cyan-50 hover:text-blue-700
@@ -63,10 +60,10 @@ export default function Sidebar() {
                 <span className="text-lg">{cat.icon}</span>
                 {cat.name}
               </span>
-              <span className="text-xs bg-gray-100 group-hover:bg-blue-100 text-gray-500 group-hover:text-blue-700 px-2 py-0.5 rounded-full transition">
-                {cat.count}
+              <span className="text-xs text-gray-400 group-hover:text-blue-700 transition">
+                ←
               </span>
-            </a>
+            </Link>
           ))}
         </nav>
 

@@ -1,10 +1,16 @@
-const links = [
-  { title: "دسترسی سریع", items: ["صفحه اصلی", "موبایل", "لپ‌تاپ", "لوازم جانبی"] },
+"use client";
+
+import Link from "next/link";
+import { useCategories } from "@/context/CategoriesContext";
+
+const footerLinks = [
   { title: "خدمات مشتریان", items: ["پیگیری سفارش", "شرایط بازگشت", "سوالات متداول", "تماس با ما"] },
   { title: "درباره ما", items: ["درباره الکترومارکت", "فرصت‌های شغلی", "حریم خصوصی", "قوانین و مقررات"] },
 ];
 
 export default function Footer() {
+  const categories = useCategories();
+
   return (
     <footer className="mt-12 bg-gray-900 text-gray-300">
       {/* نامه خبری */}
@@ -43,7 +49,21 @@ export default function Footer() {
           </p>
         </div>
 
-        {links.map((col) => (
+        {/* دسته‌بندی‌ها از Context */}
+        <div>
+          <h3 className="text-white font-bold text-sm mb-4">دسته‌بندی‌ها</h3>
+          <ul className="space-y-2.5">
+            {categories.map((cat) => (
+              <li key={cat.id}>
+                <Link href={cat.path} className="text-sm text-gray-400 hover:text-cyan-400 transition">
+                  {cat.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {footerLinks.map((col) => (
           <div key={col.title}>
             <h3 className="text-white font-bold text-sm mb-4">{col.title}</h3>
             <ul className="space-y-2.5">

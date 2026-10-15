@@ -1,52 +1,36 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-
-const categories = ["موبایل", "لپ‌تاپ", "لوازم جانبی"];
+import { useCategories } from "@/context/CategoriesContext";
 
 export default function Header() {
+  const categories = useCategories();
   const [query, setQuery] = useState("");
 
   return (
     <header className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-gray-200 shadow-sm">
       <div className="flex items-center gap-3 px-4 sm:px-6 h-16 max-w-7xl mx-auto">
-        {/* دکمه منو (موبایل) */}
-        {/* <button
-          onClick={onMenuClick}
-          aria-label="باز کردن منو"
-          className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition"
-        >
-          <svg
-            className="w-6 h-6 text-gray-700"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button> */}
-
         {/* لوگو */}
-        <a href="/" className="flex items-center gap-2 shrink-0">
+        <Link href="/" className="flex items-center gap-2 shrink-0">
           <span className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-500 text-white flex items-center justify-center font-black text-lg shadow-md">
             E
           </span>
           <span className="hidden sm:block text-xl font-extrabold bg-gradient-to-l from-blue-700 to-cyan-600 bg-clip-text text-transparent">
             الکترومارکت
           </span>
-        </a>
+        </Link>
 
-        {/* دسته‌بندی‌ها (دسکتاپ) */}
+        {/* دسته‌بندی‌ها از Context (دسکتاپ) */}
         <nav className="hidden md:flex items-center gap-1 mx-4">
           {categories.map((cat) => (
-            <a
-              key={cat}
-              href={`#category-${cat}`}
+            <Link
+              key={cat.id}
+              href={cat.path}
               className="px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-blue-700 hover:bg-blue-50 transition"
             >
-              {cat}
-            </a>
+              {cat.name}
+            </Link>
           ))}
         </nav>
 
