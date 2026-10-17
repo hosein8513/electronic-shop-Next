@@ -1,6 +1,8 @@
 import { getCategories } from "@/services/getProducts";
 import "./globals.css";
 import { CategoriesProvider } from "@/context/CategoriesContext";
+// import store from "@/redux/store";
+import ReduxProvider from "@/components/ReduxProvider";
 
 export const metadata = {
   title: "الکترومارکت | فروشگاه لوازم الکترونیکی",
@@ -13,11 +15,13 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="fa" dir="rtl">
-      <body className="bg-gray-50 text-gray-800 antialiased">
-        <CategoriesProvider categories={categories}>
-          {children}
-        </CategoriesProvider>
-      </body>
+     <body className="bg-gray-50 text-gray-800 antialiased">
+  <ReduxProvider>
+    <CategoriesProvider categories={categories}>
+      {children}
+    </CategoriesProvider>
+  </ReduxProvider>
+</body>
     </html>
   );
 }

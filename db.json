@@ -83,5 +83,19 @@
       "icon": "🎧",
       "description": "هدفون، ساعت هوشمند، پاوربانک و همه لوازم جانبی مورد نیاز شما"
     }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Hosein",
+      "email": "h@g.com",
+      "password": "123456"
+    },
+    {
+      "id": "2",
+      "name": "Javad",
+      "email": "j@g.com",
+      "password": "123456"
+    }
   ]
 }
