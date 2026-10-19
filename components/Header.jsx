@@ -10,7 +10,6 @@ import { searchProducts } from "@/services/getProducts";
 export default function Header() {
   const categories = useCategories();
   const dispatch = useDispatch();
-  // مطابق ساختار store خودت: state.userReducer.data
   const user = useSelector((state) => state.userReducer?.data);
 
   const [query, setQuery] = useState("");
@@ -26,9 +25,9 @@ export default function Header() {
     try {
       const res = await fetch("/api/me");
       const data = await res.json();
-      if (data.user) {
+      
         dispatch(reciveUserResponse(data.user));
-      }
+      
     } catch {}
   };
   fetchUser();

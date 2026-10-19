@@ -1,7 +1,4 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import ProductCard from "@/components/Productcard";
-import Sidebar from "@/components/SideBar";
 import HeroBanner from "@/components/HeroBanner";
 import { getProducts } from "@/services/getProducts";
 
@@ -10,13 +7,13 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      
 
       <HeroBanner />
 
       {/* بدنه اصلی: سایدبار + کانتنت */}
       <div className="flex-1 flex max-w-7xl mx-auto w-full">
-        <Sidebar />
+        
 
         <main id="products" className="flex-1 px-4 sm:px-6 py-8">
           <div className="flex items-center justify-between mb-6">
@@ -36,7 +33,7 @@ export default async function HomePage() {
         </main>
       </div>
 
-      <Footer />
+      
     </div>
   );
 }

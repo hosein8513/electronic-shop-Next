@@ -1,6 +1,4 @@
 import Link from "next/link";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import ProductCard from "@/components/Productcard";
 import { getCategories, getCategoryProducts } from "@/services/getProducts";
 
@@ -17,7 +15,6 @@ export default async function CategoryPage({ params }) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
 
       {/* بنر دسته‌بندی */}
       <section className="bg-gradient-to-l from-blue-700 via-blue-600 to-cyan-500 text-white">
@@ -72,7 +69,6 @@ export default async function CategoryPage({ params }) {
         )}
       </main>
 
-      <Footer />
     </div>
   );
 }

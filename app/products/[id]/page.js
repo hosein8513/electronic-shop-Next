@@ -1,6 +1,4 @@
 import Link from "next/link";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import AddToCart from "@/components/AddToCart";
 import { getProductById, getProducts } from "@/services/getProducts";
 import ProductCard from "@/components/Productcard";
@@ -13,7 +11,6 @@ export default async function ProductPage({ params }) {
   if (!product) {
     return (
       <div className="min-h-screen flex flex-col">
-        <Header />
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center py-20">
             <p className="text-6xl mb-4">🔍</p>
@@ -26,7 +23,6 @@ export default async function ProductPage({ params }) {
             </Link>
           </div>
         </main>
-        <Footer />
       </div>
     );
   }
@@ -39,7 +35,6 @@ export default async function ProductPage({ params }) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
 
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-8">
         {/* مسیر راهنما */}
@@ -112,7 +107,6 @@ export default async function ProductPage({ params }) {
         )}
       </main>
 
-      <Footer />
     </div>
   );
 }
