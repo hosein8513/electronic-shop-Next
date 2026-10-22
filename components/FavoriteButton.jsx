@@ -1,8 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 export default function FavoriteButton({ product }) {
+  const router = useRouter();
+  const user = useSelector((state) => state.userReducer?.data);
   const [isFavorite, setIsFavorite] = useState(false);
 
   // بازیابی وضعیت علاقه‌مندی هنگام لود
@@ -12,6 +16,13 @@ export default function FavoriteButton({ product }) {
   }, [product.id]);
 
   const toggleFavorite = () => {
+    // گارد لاگین: کاربر مهمان → پیام و هدایت به صفحه ورود
+    if (!user) {
+      alert("برای افزودن به علاقه‌مندی‌ها ابتدا باید وارد حساب کاربری شوید");
+      router.push("/login");
+      return;
+    }
+
     const saved = JSON.parse(localStorage.getItem("favorites") || "[]");
 
     if (isFavorite) {
