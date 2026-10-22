@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+     "server": "json-server --watch db.json --port 3000"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.13.0",
