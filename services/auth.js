@@ -1,9 +1,11 @@
-export const getUserInfo =async (id)=>{
-    const response = await fetch(`http://localhost:3000/users/${id}`)
-    if(!response.ok){
+import db from "@/data/db.json";
+
+export const getUserInfo = async (id) => {
+    const user = db.users.find((u) => u.id === Number(id));
+
+    if (!user) {
         throw new Error('خطا در دریافت اطلاعات کاربر')
     }
-    const user = await response.json()
 
     return user
 }

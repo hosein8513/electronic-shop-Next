@@ -1,23 +1,11 @@
 import { NextResponse } from "next/server";
+import db from "@/data/db.json";
 
 export async function POST(request) {
   try {
     const { email, password } = await request.json();
 
-    const response = await fetch("http://localhost:3000/users");
-
-    if (!response.ok) {
-      return NextResponse.json(
-        {
-          message: "Unable to connect to database",
-        },
-        {
-          status: 500,
-        }
-      );
-    }
-
-    const users = await response.json();
+    const users = db.users;
 
     const user = users.find(
       (user) =>
@@ -66,4 +54,3 @@ export async function POST(request) {
     );
   }
 }
-

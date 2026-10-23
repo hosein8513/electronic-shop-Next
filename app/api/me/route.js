@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import db from "@/data/db.json";
 
 export async function GET() {
   try {
@@ -12,16 +13,12 @@ export async function GET() {
       return NextResponse.json({ user: null });
     }
 
-    // ۳. گرفتن اطلاعات کاربر از json-server با همون id داخل کوکی
-    const response = await fetch(
-      `http://localhost:3000/users/${session.value}`
-    );
+    // ۳. گرفتن اطلاعات کاربر از db.json با همون id داخل کوکی
+    const user = db.users.find((u) => u.id === Number(session.value));
 
-    if (!response.ok) {
+    if (!user) {
       return NextResponse.json({ user: null });
     }
-
-    const user = await response.json();
 
     // ۴. فقط فیلدهای امن را برمی‌گردانیم (پسورد هرگز!)
     return NextResponse.json({
