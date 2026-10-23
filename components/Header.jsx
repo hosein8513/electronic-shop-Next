@@ -20,14 +20,13 @@ export default function Header() {
   const searchRef = useRef(null);
   const menuRef = useRef(null);
 
-  useEffect(() => {
+ // بازیابی کاربر از کوکی هنگام لود صفحه
+useEffect(() => {
   const fetchUser = async () => {
     try {
-      const res = await fetch("/api/me");
+      const res = await fetch("/api/me", { cache: "no-store" });
       const data = await res.json();
-      
-        dispatch(reciveUserResponse(data.user));
-      
+      dispatch(reciveUserResponse(data.user || null));
     } catch {}
   };
   fetchUser();
