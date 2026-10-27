@@ -3,9 +3,26 @@
 import Link from "next/link";
 import { useCategories } from "@/context/CategoriesContext";
 
+// لینک‌های فوتر با مسیرهای واقعی
 const footerLinks = [
-  { title: "خدمات مشتریان", items: ["پیگیری سفارش", "شرایط بازگشت", "سوالات متداول", "تماس با ما"] },
-  { title: "درباره ما", items: ["درباره الکترومارکت", "فرصت‌های شغلی", "حریم خصوصی", "قوانین و مقررات"] },
+  {
+    title: "دسترسی سریع",
+    items: [
+      { label: "حراج پاییزه", href: "/sale" },
+      { label: "همه محصولات", href: "/products" },
+      { label: "سبد خرید", href: "/cart" },
+      { label: "علاقه‌مندی‌ها", href: "/favorites" },
+    ],
+  },
+  {
+    title: "خدمات مشتریان",
+    items: [
+      { label: "درباره ما", href: "/about" },
+      { label: "تماس با ما", href: "/contact" },
+      { label: "سوالات متداول", href: "/faq" },
+      { label: "قوانین و مقررات", href: "/terms" },
+    ],
+  },
 ];
 
 export default function Footer() {
@@ -68,10 +85,13 @@ export default function Footer() {
             <h3 className="text-white font-bold text-sm mb-4">{col.title}</h3>
             <ul className="space-y-2.5">
               {col.items.map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition">
-                    {item}
-                  </a>
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-gray-400 hover:text-cyan-400 transition"
+                  >
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
