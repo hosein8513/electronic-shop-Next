@@ -2,6 +2,7 @@ import Link from "next/link";
 import AddToCart from "@/components/AddToCart";
 import { getProductById, getProducts } from "@/services/getProducts";
 import ProductCard from "@/components/Productcard";
+import Price from "@/components/Price";
 
 export default async function ProductPage({ params }) {
   const { id } = await params;
@@ -79,14 +80,20 @@ export default async function ProductPage({ params }) {
             </p>
 
             {/* قیمت */}
-            <div className="bg-blue-50 border border-blue-100 rounded-2xl p-5 flex items-center justify-between mb-6">
-              <span className="text-gray-500 text-sm">قیمت نهایی</span>
-              <span className="text-2xl font-black text-blue-700">
-                {product.price.toLocaleString("fa-IR")}
-                <span className="text-sm font-medium mr-1">تومان</span>
-              </span>
-            </div>
 
+<div className="m-6">
+  <Price product={product} size="lg" />
+
+  {product.discount > 0 && (
+    <p className="text-sm font-bold text-green-600 mt-2">
+      سود شما از این خرید:{" "}
+      {Math.round(
+        product.price * (product.discount / 100)
+      ).toLocaleString("fa-IR")}{" "}
+      تومان
+    </p>
+  )}
+</div>
             {/* ★ دکمه‌های اکشن */}
             <AddToCart product={product} />
           </div>

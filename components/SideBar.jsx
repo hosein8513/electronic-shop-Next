@@ -68,15 +68,37 @@ export default function Sidebar() {
         </nav>
 
         {/* بنر تخفیف */}
-        <div className="mt-8 rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-500 p-5 text-white shadow-lg shadow-blue-200">
-          <p className="text-sm font-bold mb-1">🔥 حراج پاییزه</p>
-          <p className="text-xs text-blue-100 leading-6">
-            تا ۴۰٪ تخفیف روی لوازم جانبی منتخب
-          </p>
-          <button className="mt-3 w-full bg-white/20 hover:bg-white/30 backdrop-blur text-xs font-semibold py-2 rounded-lg transition">
-            مشاهده تخفیف‌ها
-          </button>
-        </div>
+
+<Link
+  href="/sale"
+  className="group relative block overflow-hidden bg-gradient-to-l from-orange-500 via-rose-500 to-pink-500 rounded-3xl p-6 sm:p-8 text-white shadow-lg shadow-orange-200 hover:shadow-2xl hover:shadow-orange-300 hover:scale-[1.02] transition-all duration-300"
+>
+  {/* دایره‌های تزئینی پس‌زمینه */}
+  <span className="absolute -top-8 -left-8 w-32 h-32 rounded-full bg-white/10 group-hover:scale-125 transition-transform duration-500"></span>
+  <span className="absolute -bottom-10 -right-6 w-40 h-40 rounded-full bg-white/10 group-hover:scale-110 transition-transform duration-500"></span>
+
+  <div className="relative">
+    {/* بج حراج */}
+    <span className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur text-xs sm:text-sm font-black px-3 py-1.5 rounded-full mb-3">
+      🍂 فقط تا پایان پاییز
+    </span>
+
+    <p className="text-2xl sm:text-4xl font-black drop-shadow">
+      حراج پاییزه
+    </p>
+    <p className="text-sm sm:text-base text-orange-100 mt-2 leading-relaxed">
+      تا ٪۵۰ تخفیف روی محصولات منتخب
+    </p>
+
+    {/* دکمه مشاهده */}
+    <span className="inline-flex items-center gap-2 mt-4 bg-white text-orange-600 text-sm font-black px-5 py-2.5 rounded-full shadow-md group-hover:gap-3 group-hover:bg-orange-50 transition-all duration-300">
+      مشاهده تخفیف‌ها
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+        <path strokeLinecap="round" d="M15 19l-7-7 7-7" />
+      </svg>
+    </span>
+  </div>
+</Link>
       </aside>
     </>
   );

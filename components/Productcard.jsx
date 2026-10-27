@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Price from "./Price";
 
 export default function ProductCard({ product }) {
   return (
@@ -33,9 +34,7 @@ export default function ProductCard({ product }) {
         </div>
 
         <div className="mt-auto flex items-center justify-between gap-2">
-          <span className="font-extrabold text-blue-700 text-sm whitespace-nowrap">
-            {product.price.toLocaleString("fa-IR")} تومان
-          </span>
+         <Price product={product}/>
           <Link
             href={`/products/${product.id}`}
             className="text-xs font-semibold text-blue-600 border border-blue-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 px-4 py-2 rounded-full transition active:scale-95"
